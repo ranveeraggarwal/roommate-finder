@@ -31,21 +31,23 @@
 					<hr>
 					Just type in your hostel and room number here to see your room-mate and wingmates.
     			</p>
-    			<div class="row">
-    				<div class="col-md-6">
-    					<div class="form-group">
-		    				<input type="text" name="hostel" id="hostel" class="form-control input-lg" placeholder="Hostel" tabindex="3">
-		    				<p><i>Example: 15</i></p>
-		                </div>
-    				</div>
-    				<div class="col-md-6">
-    					<div class="form-group">
-		    				<input type="text" name="roomno" id="roomno" class="form-control input-lg" placeholder="Room Number" tabindex="3">
-							<p><i>Example: A101</i></p>
-		                </div>
-    				</div>
-    			</div>
-                <center><button class="btn btn-primary btn-lg">Find!</button></center>
+                <form action="roomie.php" method="post">
+        			<div class="row">
+        				<div class="col-md-6">
+        					<div class="form-group">
+    		    				<input type="text" name="hostel" id="hostel" class="form-control input-lg" placeholder="Hostel" tabindex="3">
+    		    				<p><i>Example: 15</i></p>
+    		                </div>
+        				</div>
+        				<div class="col-md-6">
+        					<div class="form-group">
+    		    				<input type="text" name="roomno" id="roomno" class="form-control input-lg" placeholder="Room Number" tabindex="3">
+    							<p><i>Example: A101</i></p>
+    		                </div>
+        				</div>
+        			</div>
+                    <center><button class="btn btn-primary btn-lg" type="submit" name="findbtn">Find!</button></center>
+                </form>
     			<hr>
     			<p>Also, while you're at it, you might wanna take a look at</p>
     			<center><img src="./img/drevil.jpg" class="img img-responsive"></center>
