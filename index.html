@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WnCC | Roommate Finder</title>
+    <meta property="og:image" content="http://www.cse.iitb.ac.in/~ranveer/roommate-finder/img/sign.jpg" />
+    <meta property="og:description" content="Greetings new IITBian! Hope you are just as excited to be coming into IITB as we are to welcome you here! But have you met your wingmates yet? No? Find them using the IITB Room-mate Finder!" />
+    <title>Roommate Finder</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +19,14 @@
     <![endif]-->
   </head>
   <body>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=436367376492046&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
     	<div class="row">
     		<div class="col-md-12">
@@ -32,6 +42,8 @@
         					we are extremely jobless and have nothing to do</strike> we care about you!<br>
         					<hr>
             			</p>
+            			<center><img src="./img/sign.jpg" class="img img-responsive" style="height:250px;"></center>
+            			<br>
                     </div>
                 </div>
                 <form action="roomie.php" method="post">
@@ -68,11 +80,14 @@
                         </div>
                     </div>
                 </form>
+                <br>
+                <center><div class="fb-like" data-href="http://www.cse.iitb.ac.in/~ranveer/roommate-finder/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></center>
                 <hr>
                 <center>Developed by <b>Ranveer Aggarwal </b>and<b> Abhijit Tomar</b></center>
                 <hr>
-                <br><br><br><br><br><br><br>
+                <br><br><br><br>
                 <center><a href="./about.html">Thought this was cool?</a>
+                <br><br><br>
     		</div>
     	</div>
     </div>

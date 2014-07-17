@@ -56,7 +56,6 @@
             if (!$writed) {
               print("Could not append to file");
             }
-            $writer = implode("*****",$data);
             fwrite($writed,PHP_EOL.$host."*****".$room."*****1*****".$name."*****".$dept."*****".$fblink."\n");
             echo "Your response has been recorded";
             fclose($writed);
@@ -67,7 +66,6 @@
             if (!$writed) {
               print("Could not append to file");
             }
-            $writer = implode("*****",$data);
             fwrite($writed,PHP_EOL.$host."*****".$room."*****2*****".$name."*****".$dept."*****".$fblink."\n");
             echo "Your response has been recorded";
             fclose($writed);
