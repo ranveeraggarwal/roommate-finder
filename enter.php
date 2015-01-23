@@ -29,8 +29,45 @@
           $room = $_POST['room'];
           $name = $_POST['name'];
           $dept = $_POST['dept'];
-          $fblink = $_POST['fblink'];
-          $opened = fopen('roomie.txt','r');
+          $fblink = $_POST['fblink']; 
+	
+	  require_once('../mysqli_connect.php');
+	 
+
+          $query = sprintf("SELECT noofoccupants FROM data WHERE host =%d  AND room ='%s';",$host,$room);
+	$response = @mysqli_query($dbc, $query);
+
+
+	  if($response){
+          $row = mysqli_fetch_array($response);
+          $no=$row['noofoccupants'];
+		if($no==0){ 
+          		   $stmt = $dbc->prepare("INSERT INTO data (noofoccupants , name1, dept1,fblink1,host,room) VALUES (?,?,?,?,?,?);");
+          		   $stmt->bind_param("isssis", $no,$name,$dept,$fblink,$host,$room);
+	  		   $no=$no+1;
+         		   $stmt->execute();
+			   $stmt->close();
+			   echo "Your response has been recorded";
+			   }
+                elseif($no==1){
+			
+  $query=sprintf("UPDATE data SET noofoccupants=%d , name2='%s', dept2='%s',fblink2='%s' WHERE host =%d  AND room ='%s'; ",$no+1,$name,$dept,$fblink,$host,$room);
+  	 		$response = @mysqli_query($dbc, $query);
+          		   
+                           echo "Your response has been recorded";
+                           }
+                else{
+                       echo "Umm.. Looks like there is a mistake. Both the occupants have already filled up for this room.";
+                    }       
+			$dbc->close();    
+	   }
+	else {
+		echo "Couldn't issue database query<br />";
+		echo mysqli_error($dbc);
+	}
+        
+
+/*          $opened = fopen('roomie.txt','r');
           if (!$opened) {echo 'ERROR: Unable to open file';}
           $oneisPresent = 0;
           $twoisPresent = 0;
@@ -69,8 +106,8 @@
             fwrite($writed,PHP_EOL.$host."*****".$room."*****2*****".$name."*****".$dept."*****".$fblink."\n");
             echo "Your response has been recorded";
             fclose($writed);
-          }
-          else {die("Error! Report this at ranveeraggarwal@gmail.com");}
+          else {die("Error! Report this at ranveeraggarwal@gmail.com");}*/
+
         ?>
         
         
