@@ -28,7 +28,42 @@
 	    }
 	    $hostel = $_POST['hostel'];
 	    $roomno = $_POST['roomno'];
-	    $opened = fopen('roomie.txt','r');
+	    require_once('../mysqli_connect.php');
+	    
+
+  	    $query = sprintf("SELECT noofoccupants,name1,dept1,fblink1,name2,dept2,fblink2 FROM data WHERE host =%d  AND room ='%s';",$hostel,$roomno);
+
+	  $response = @mysqli_query($dbc, $query);
+	  if($response){
+          $row = mysqli_fetch_array($response);
+          $no=$row['noofoccupants'];
+	if($no==0){ 
+          		  echo "<center><h4>Occupant 1</h4></center><p>Hard Luck! Look like the occupant hasn't visited the app yet :(</p><hr>";
+echo "<center><h4>Occupant 2</h4></center><p>Hard Luck! Look like the occupant hasn't visited the app yet :(</p><hr>";
+			   }
+                elseif($no==1){
+  	 		  echo "<center><h4>Occupant 1</h4></center><p><a href='http://www.facebook.com/".$row['fblink1']."''>".$row['name1']."</a><br>".$row['dept1']."</p><hr>";
+ echo "<center><h4>Occupant 1</h4></center><p>Hard Luck! Look like the occupant hasn't visited the app yet :(</p><hr>";
+                           }
+                else{
+                       echo "<center><h4>Occupant 1</h4></center><p><a href='http://www.facebook.com/".$row['fblink1']."''>".$row['name1']."</a><br>".$row['dept1']."</p><hr>";
+echo "<center><h4>Occupant 2</h4></center><p><a href='http://www.facebook.com/".$row['fblink2']."''>".$row['name2']."</a><br>".$row['dept2']."</p><hr>";
+                    }       
+			$dbc->close();    
+	   }
+
+else {
+		echo "Couldn't issue database query<br />";
+		echo mysqli_error($dbc);
+	}
+        
+
+
+/*
+
+
+
+$opened = fopen('roomie.txt','r');
 		if (!$opened) {echo 'ERROR: Unable to open file';}
 		$oneisPresent = 0;
 		$twoisPresent = 0;
@@ -62,21 +97,7 @@
 		{
 			echo "<center><h4>Occupant 2</h4></center><p>Hard Luck! Look like the occupant hasn't visited the app yet :(</p>";
 		}
-		/*if ($isPresent == 0) {
-			fclose($opened);
-			$writed = fopen("roomie.txt", "a"); 
-			if (!$writed) {
-				print("Could not append to file");
-			}
-			$data=$_POST;
-			//unset($data[name]);
-			//unset($data[dept]);
-			//unset($data[fblink]);
-			//$writer = implode("*****",$data);
-			fwrite($writed,PHP_EOL.$hostel."*****".$roomno."*****\n");
-			echo "Your response has been recorded";
-			fclose($writed);
-		}*/
+		*/
 	  ?>
 </div>
 </div>
